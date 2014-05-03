@@ -1,0 +1,63 @@
+UNADDRESSABLE ACCESS
+name=magic issue, not important
+libc.so.6!__strnlen_sse2
+libc.so.6!_IO_vfprintf_internal
+libc.so.6!__GI___vasprintf_chk
+libc.so.6!__asprintf_chk
+libmagic.so.1!?
+libmagic.so.1!file_apprentice
+libmagic.so.1!magic_load
+suricata!main
+
+LEAK
+name=bug #978
+*
+suricata!SMTPLocalStorageAlloc
+suricata!AppLayerGetProtocolParserLocalStorage
+suricata!AlpProtoFinalizeThread
+suricata!AlpProtoFinalize2Thread
+suricata!StreamTcpReassembleInitThreadCtx
+suricata!StreamTcpThreadInit
+suricata!TmThreadsSlotPktAcqLoop
+libpthread.so.0!start_thread
+libc.so.6!__clone 
+
+LEAK
+name=bug 980 (1)
+*
+suricata!DetectEngineHSBDGetBufferForTX
+suricata!DetectEngineRunHttpServerBodyMpm
+suricata!DetectMpmPrefilter
+suricata!SigMatchSignatures
+suricata!Detect
+suricata!TmThreadsSlotVarRun
+*
+
+LEAK
+name=bug 980 (2)
+*
+suricata!HHDCreateSpace
+suricata!DetectEngineHHDGetBufferForTX
+suricata!DetectEngineRunHttpHeaderMpm
+suricata!DetectMpmPrefilter
+suricata!SigMatchSignatures
+suricata!Detect
+suricata!TmThreadsSlotVarRun
+*
+
+LEAK
+name=bug 980 (3)
+*
+suricata!DetectEngineHCBDGetBufferForTX
+suricata!DetectEngineRunHttpClientBodyMpm
+suricata!DetectMpmPrefilter
+suricata!SigMatchSignatures
+suricata!Detect
+suricata!TmThreadsSlotVarRun
+*
+
+LEAK
+name=useless warning, likely DrMemory bug
+*
+libpcre.so.3!pcre_get_substring
+
